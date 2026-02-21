@@ -58,10 +58,14 @@ const Header: React.FC<HeaderProps> = ({ cartCount, onOpenCart }) => {
             {/* Brand Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-xl flex items-center justify-center text-white shadow-lg transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110">
-                  <i className="fas fa-leaf text-lg"></i>
+                <div className="w-10 h-10 overflow-hidden rounded-xl flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                  <img 
+                    src="/logg.png" 
+                    alt="Satesma Fountain Ventures" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 to-amber-400 rounded-xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-300"></div>
+                <div className="absolute -inset-1 bg-emerald-400/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
               </div>
               <div className="hidden lg:block">
                 <h1 className="text-xl font-bold text-gray-900 leading-tight">Satesma</h1>
