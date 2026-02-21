@@ -9,7 +9,7 @@ interface AdminPanelProps {
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://satesma-back.onrender.com/api';
 
 const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
   const [token, setToken] = useState<string>(() => {
