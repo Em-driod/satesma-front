@@ -87,7 +87,11 @@ const Home: React.FC<HomeProps> = ({ products, onAddToCart }) => {
                 {/* Floating Badge */}
                 <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg">
                   <div className="flex items-center space-x-2">
-                    <i className="fas fa-leaf text-emerald-600"></i>
+                    <img 
+                      src="/logg.png" 
+                      alt="Satesma Logo" 
+                      className="w-6 h-6 object-cover rounded"
+                    />
                     <span className="text-sm font-semibold text-gray-800">100% Organic</span>
                   </div>
                 </div>
