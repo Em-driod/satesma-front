@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { Product } from '../types';
-import { generateProductDescription } from '../services/gemini';
 
 interface AdminPanelProps {
   products: Product[];
@@ -23,7 +22,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
   const [error, setError] = useState('');
 
   const [isAdding, setIsAdding] = useState(false);
-  const [isLoadingAi, setIsLoadingAi] = useState(false);
   const [newProduct, setNewProduct] = useState<Partial<Product>>({
     category: 'Vegetables',
     unit: 'kg',
@@ -100,14 +98,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
         alert('Failed to delete product');
       }
     }
-  };
-
-  const handleAiDescription = async () => {
-    if (!newProduct.name) return alert("Please enter a product name first");
-    setIsLoadingAi(true);
-    const desc = await generateProductDescription(newProduct.name);
-    setNewProduct(prev => ({ ...prev, description: desc }));
-    setIsLoadingAi(false);
   };
 
   if (!token) {
@@ -238,18 +228,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
             </div>
           </div>
           <div>
-            <div className="flex justify-between items-center mb-1">
-              <label className="block text-xs font-bold text-stone-500 uppercase">Description</label>
-              <button
-                type="button"
-                onClick={handleAiDescription}
-                disabled={isLoadingAi}
-                className="text-emerald-600 text-xs font-bold flex items-center space-x-1 hover:text-emerald-700 disabled:opacity-50"
-              >
-                <i className={`fas ${isLoadingAi ? 'fa-spinner fa-spin' : 'fa-magic'}`}></i>
-                <span>Use AI Helper</span>
-              </button>
-            </div>
+            <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Description</label>
             <textarea
               rows={3}
               value={newProduct.description || ''}
