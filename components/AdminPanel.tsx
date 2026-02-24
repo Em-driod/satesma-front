@@ -137,14 +137,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
       <div className="flex justify-end mb-4">
         <button onClick={handleLogout} className="text-stone-500 hover:text-stone-700 text-sm underline">Logout</button>
       </div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-stone-900">Admin Dashboard</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-stone-900">Admin Dashboard</h1>
           <p className="text-stone-500 text-sm">Manage your store's inventory</p>
         </div>
         <button
           onClick={() => setIsAdding(!isAdding)}
-          className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${isAdding ? 'bg-stone-200 text-stone-700' : 'bg-emerald-600 text-white'}`}
+          className={`w-full sm:w-auto px-6 py-3 rounded-xl text-sm font-semibold shadow-sm transition-all ${isAdding ? 'bg-stone-200 text-stone-700' : 'bg-emerald-600 text-white hover:bg-emerald-700'}`}
         >
           {isAdding ? 'Cancel' : 'Add New Product'}
         </button>
@@ -243,41 +243,45 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ products, setProducts }) => {
       )}
 
       <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-        <table className="w-full text-left">
-          <thead className="bg-stone-50 border-b border-stone-200">
-            <tr>
-              <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Product</th>
-              <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Price</th>
-              <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Category</th>
-              <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-stone-100">
-            {products.map(p => (
-              <tr key={p.id} className="hover:bg-stone-50/50 transition-colors">
-                <td className="px-6 py-4">
-                  <div className="flex items-center space-x-3">
-                    <img src={p.image} className="w-10 h-10 rounded-lg object-cover" />
-                    <span className="font-semibold text-stone-800">{p.name}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-stone-600">${p.price.toFixed(2)} / {p.unit}</td>
-                <td className="px-6 py-4">
-                  <span className="text-xs font-medium px-2 py-1 bg-stone-100 text-stone-600 rounded-md mr-2">{p.category}</span>
-                  {p.isTopProduct && <span className="text-xs font-medium px-2 py-1 bg-amber-100 text-amber-700 rounded-md">Top</span>}
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <button
-                    onClick={() => deleteProduct(p.id)}
-                    className="text-red-400 hover:text-red-600 transition-colors"
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[600px]">
+            <thead className="bg-stone-50 border-b border-stone-200">
+              <tr>
+                <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Product</th>
+                <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Price</th>
+                <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase">Category</th>
+                <th className="px-6 py-4 text-xs font-bold text-stone-500 uppercase text-right">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-stone-100">
+              {products.map(p => (
+                <tr key={p.id} className="hover:bg-stone-50/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center space-x-3">
+                      <img src={p.image} className="w-10 h-10 rounded-lg object-cover flex-shrink-0" />
+                      <span className="font-semibold text-stone-800 truncate max-w-[150px]">{p.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-stone-600 whitespace-nowrap">${p.price.toFixed(2)} / {p.unit}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      <span className="text-xs font-medium px-2 py-1 bg-stone-100 text-stone-600 rounded-md">{p.category}</span>
+                      {p.isTopProduct && <span className="text-xs font-medium px-2 py-1 bg-amber-100 text-amber-700 rounded-md">Top</span>}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button
+                      onClick={() => deleteProduct(p.id)}
+                      className="text-red-400 hover:text-red-600 transition-colors p-2"
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

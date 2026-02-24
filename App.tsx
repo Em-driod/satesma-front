@@ -150,7 +150,7 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-16">
                 <div className="space-y-6">
                   <h4 className="text-white text-[10px] font-bold uppercase tracking-[0.4em]">The Venture</h4>
                   <ul className="space-y-4 text-sm tracking-wide">
@@ -167,7 +167,7 @@ const App: React.FC = () => {
                     <li><a href="#" className="hover:text-white transition-all">WhatsApp</a></li>
                   </ul>
                 </div>
-                <div className="space-y-6 hidden md:block">
+                <div className="space-y-6">
                   <h4 className="text-white text-[10px] font-bold uppercase tracking-[0.4em]">Information</h4>
                   <ul className="space-y-4 text-sm tracking-wide">
                     <li><a href="#" className="hover:text-white transition-all">Privacy</a></li>
